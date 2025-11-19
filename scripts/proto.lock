@@ -1637,6 +1637,16 @@
                 "name": "length",
                 "type": "uint64"
               }
+            ],
+            "options": [
+              {
+                "name": "(rustproto.carllerche_bytes_for_bytes)",
+                "value": "true"
+              },
+              {
+                "name": "(rustproto.carllerche_bytes_for_string)",
+                "value": "true"
+              }
             ]
           },
           {
@@ -1757,6 +1767,16 @@
                 "id": 23,
                 "name": "file_encryption_info",
                 "type": "encryptionpb.FileEncryptionInfo"
+              }
+            ],
+            "options": [
+              {
+                "name": "(rustproto.carllerche_bytes_for_bytes)",
+                "value": "true"
+              },
+              {
+                "name": "(rustproto.carllerche_bytes_for_string)",
+                "value": "true"
               }
             ]
           },
@@ -8535,6 +8555,11 @@
                 "out_type": "DownloadResponse"
               },
               {
+                "name": "BatchDownload",
+                "in_type": "DownloadRequest",
+                "out_type": "DownloadResponse"
+              },
+              {
                 "name": "Write",
                 "in_type": "WriteRequest",
                 "out_type": "WriteResponse",
@@ -11340,6 +11365,16 @@
               {
                 "id": 35,
                 "name": "cluster_id",
+                "type": "uint64"
+              },
+              {
+                "id": 36,
+                "name": "trace_id",
+                "type": "bytes"
+              },
+              {
+                "id": 37,
+                "name": "trace_control_flags",
                 "type": "uint64"
               }
             ],
@@ -21685,6 +21720,12 @@
                 "name": "record",
                 "type": "GroupTagRecord",
                 "oneof_parent": "record_oneof"
+              },
+              {
+                "id": 2,
+                "name": "region_record",
+                "type": "RegionRecord",
+                "oneof_parent": "record_oneof"
               }
             ]
           },
@@ -21726,6 +21767,42 @@
                 "id": 4,
                 "name": "write_keys",
                 "type": "uint32"
+              },
+              {
+                "id": 5,
+                "name": "network_in_bytes",
+                "type": "uint64"
+              },
+              {
+                "id": 6,
+                "name": "network_out_bytes",
+                "type": "uint64"
+              },
+              {
+                "id": 7,
+                "name": "logical_read_bytes",
+                "type": "uint64"
+              },
+              {
+                "id": 8,
+                "name": "logical_write_bytes",
+                "type": "uint64"
+              }
+            ]
+          },
+          {
+            "name": "RegionRecord",
+            "fields": [
+              {
+                "id": 1,
+                "name": "region_id",
+                "type": "uint64"
+              },
+              {
+                "id": 2,
+                "name": "items",
+                "type": "GroupTagRecordItem",
+                "is_repeated": true
               }
             ]
           }
