@@ -730,6 +730,21 @@
                 "name": "stats_index",
                 "type": "StatsFileIndex",
                 "is_repeated": true
+              },
+              {
+                "id": 9,
+                "name": "is_merge_option_allowed",
+                "type": "bool"
+              }
+            ],
+            "maps": [
+              {
+                "key_type": "string",
+                "field": {
+                  "id": 10,
+                  "name": "partition_merge_option_allowed",
+                  "type": "bool"
+                }
               }
             ]
           },
@@ -796,6 +811,11 @@
               {
                 "id": 4,
                 "name": "filtered_out",
+                "type": "bool"
+              },
+              {
+                "id": 5,
+                "name": "reused",
                 "type": "bool"
               }
             ]
@@ -9133,6 +9153,14 @@
               {
                 "name": "CheckNotExists",
                 "integer": 6
+              },
+              {
+                "name": "SharedLock",
+                "integer": 7
+              },
+              {
+                "name": "SharedPessimisticLock",
+                "integer": 8
               }
             ]
           },
@@ -11504,6 +11532,12 @@
                 "id": 11,
                 "name": "duration_to_last_update_ms",
                 "type": "uint64"
+              },
+              {
+                "id": 12,
+                "name": "shared_lock_infos",
+                "type": "LockInfo",
+                "is_repeated": true
               },
               {
                 "id": 100,
@@ -13979,6 +14013,22 @@
             ]
           },
           {
+            "name": "BucketMeta",
+            "fields": [
+              {
+                "id": 1,
+                "name": "version",
+                "type": "uint64"
+              },
+              {
+                "id": 2,
+                "name": "keys",
+                "type": "bytes",
+                "is_repeated": true
+              }
+            ]
+          },
+          {
             "name": "Region",
             "fields": [
               {
@@ -14539,6 +14589,22 @@
               },
               {
                 "name": "USEKEY",
+                "integer": 2
+              }
+            ]
+          },
+          {
+            "name": "SplitReason",
+            "enum_fields": [
+              {
+                "name": "ADMIN"
+              },
+              {
+                "name": "SIZE",
+                "integer": 1
+              },
+              {
+                "name": "LOAD",
                 "integer": 2
               }
             ]
@@ -15701,6 +15767,11 @@
                 "id": 19,
                 "name": "approximate_columnar_kv_size",
                 "type": "uint64"
+              },
+              {
+                "id": 20,
+                "name": "bucket_meta",
+                "type": "metapb.BucketMeta"
               }
             ],
             "reserved_ids": [
@@ -15802,6 +15873,16 @@
             ]
           },
           {
+            "name": "ChangeSplit",
+            "fields": [
+              {
+                "id": 1,
+                "name": "auto_split_enabled",
+                "type": "bool"
+              }
+            ]
+          },
+          {
             "name": "RegionHeartbeatResponse",
             "fields": [
               {
@@ -15853,6 +15934,11 @@
                 "id": 10,
                 "name": "switch_witnesses",
                 "type": "BatchSwitchWitness"
+              },
+              {
+                "id": 11,
+                "name": "change_split",
+                "type": "ChangeSplit"
               }
             ]
           },
@@ -15939,6 +16025,11 @@
                 "id": 3,
                 "name": "split_count",
                 "type": "uint32"
+              },
+              {
+                "id": 4,
+                "name": "reason",
+                "type": "SplitReason"
               }
             ]
           },
@@ -22199,6 +22290,11 @@
                 "id": 14,
                 "name": "interval",
                 "type": "pdpb.TimeInterval"
+              },
+              {
+                "id": 15,
+                "name": "bucket_meta",
+                "type": "metapb.BucketMeta"
               }
             ]
           },
@@ -22254,6 +22350,11 @@
                 "id": 10,
                 "name": "switch_witnesses",
                 "type": "pdpb.BatchSwitchWitness"
+              },
+              {
+                "id": 11,
+                "name": "change_split",
+                "type": "pdpb.ChangeSplit"
               }
             ]
           },
